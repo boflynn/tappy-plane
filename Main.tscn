@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c61kof8wfjr2v"]
+[gd_scene load_steps=8 format=3 uid="uid://c61kof8wfjr2v"]
 
 [ext_resource type="Texture2D" uid="uid://dijkxlbopqdoj" path="res://assets/Background.png" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://c7tpirasxr6mc" path="res://main.gd" id="1_r0du0"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cm0pq"]
 radius = 25.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fos0i"]
+size = Vector2(1600, 20)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_r0du0")
@@ -29,6 +32,7 @@ texture = ExtResource("1_glv2v")
 position = Vector2(175, 480)
 mass = 2.2
 gravity_scale = 1.6
+continuous_cd = 1
 script = ExtResource("4_fos0i")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
@@ -36,3 +40,18 @@ texture = ExtResource("4_cm0pq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CircleShape2D_cm0pq")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Walls"]
+position = Vector2(800, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top"]
+shape = SubResource("RectangleShape2D_fos0i")
+
+[node name="Bottom" type="StaticBody2D" parent="Walls"]
+position = Vector2(800, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom"]
+position = Vector2(0, 960)
+shape = SubResource("RectangleShape2D_fos0i")
