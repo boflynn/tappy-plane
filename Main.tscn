@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c61kof8wfjr2v"]
+[gd_scene load_steps=7 format=3 uid="uid://c61kof8wfjr2v"]
 
 [ext_resource type="Texture2D" uid="uid://dijkxlbopqdoj" path="res://assets/Background.png" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://c7tpirasxr6mc" path="res://main.gd" id="1_r0du0"]
 [ext_resource type="Script" uid="uid://ds504ekq4v4id" path="res://background.gd" id="1_uu6xs"]
 [ext_resource type="Texture2D" uid="uid://c8sxwrxr1nnlx" path="res://assets/Player.png" id="4_cm0pq"]
+[ext_resource type="Script" uid="uid://din2leqy5fiup" path="res://player.gd" id="4_fos0i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cm0pq"]
 radius = 25.0
@@ -27,6 +28,8 @@ texture = ExtResource("1_glv2v")
 [node name="Player" type="RigidBody2D" parent="."]
 position = Vector2(175, 480)
 mass = 2.2
+gravity_scale = 1.6
+script = ExtResource("4_fos0i")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource("4_cm0pq")
