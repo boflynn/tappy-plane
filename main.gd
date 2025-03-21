@@ -45,5 +45,14 @@ func _on_coin_timer_timeout() -> void:
 
 	coin_instance.position.x = spawned_obstacle_position_x
 	coin_instance.position.y = coin_position_ys[ypos]
+	coin_instance.body_entered.connect(_on_coin_collided.bind(coin_instance))
 
 	add_child(coin_instance)
+
+func _on_coin_collided(body: Node2D, coin_instance: Area2D) -> void:
+	if(!body.is_in_group("player")):
+		pass
+	
+	health += 4
+	health = clamp(health, 0, 100)
+	coin_instance.queue_free()

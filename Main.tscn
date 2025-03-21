@@ -47,7 +47,7 @@ texture = ExtResource("1_glv2v")
 position = Vector2(1200, 0)
 texture = ExtResource("1_glv2v")
 
-[node name="Player" type="RigidBody2D" parent="."]
+[node name="Player" type="RigidBody2D" parent="." groups=["player"]]
 position = Vector2(175, 480)
 mass = 2.2
 gravity_scale = 1.6
