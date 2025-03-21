@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c61kof8wfjr2v"]
+[gd_scene load_steps=16 format=3 uid="uid://c61kof8wfjr2v"]
 
 [ext_resource type="Texture2D" uid="uid://dijkxlbopqdoj" path="res://assets/Background.png" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://c7tpirasxr6mc" path="res://main.gd" id="1_r0du0"]
@@ -8,10 +8,15 @@
 [ext_resource type="Script" uid="uid://din2leqy5fiup" path="res://player.gd" id="4_fos0i"]
 [ext_resource type="FontFile" uid="uid://6eqtas3hc67a" path="res://assets/kenvector_future.ttf" id="6_3dxm6"]
 [ext_resource type="PackedScene" uid="uid://c6550ewlsa5i4" path="res://Coin.tscn" id="7_trn2v"]
+[ext_resource type="Texture2D" uid="uid://dc4xxtms0djw0" path="res://assets/Circle.png" id="8_wkp8b"]
 [ext_resource type="Script" uid="uid://70p06uxdnl5c" path="res://game_over.gd" id="9_03owx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cm0pq"]
 radius = 25.0
+
+[sub_resource type="Curve" id="Curve_20pc6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fos0i"]
 size = Vector2(1600, 20)
@@ -60,6 +65,20 @@ texture = ExtResource("4_cm0pq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CircleShape2D_cm0pq")
+
+[node name="Particles" type="CPUParticles2D" parent="Player"]
+position = Vector2(-50, -10)
+amount = 25
+texture = ExtResource("8_wkp8b")
+lifetime = 0.4
+spread = 180.0
+gravity = Vector2(-2500, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_20pc6")
+color = Color(0.760784, 0.25098, 0.25098, 1)
 
 [node name="Walls" type="Node" parent="."]
 
