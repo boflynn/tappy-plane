@@ -1,12 +1,14 @@
 extends Node
 
 @export var obstacle: PackedScene
+@export var coin: PackedScene
 
 var background_movement_speed: int = 700
 var health_decrease_speed: int = 3
 var health: float = 100
 var score: float = 0
 var spawned_obstacle_position_x: int = 1700
+var coin_position_ys: Array = [280, 480, 680]
 
 func _process(delta: float):
 	for lefty in get_tree().get_nodes_in_group("lefties"):
@@ -35,3 +37,13 @@ func _on_spawner_timer_timeout() -> void:
 		obstacle_instance.scale.y *= -1
 
 	add_child(obstacle_instance)
+
+func _on_coin_timer_timeout() -> void:
+	var ypos: int = randi() % 3
+
+	var coin_instance : Area2D = coin.instantiate()
+
+	coin_instance.position.x = spawned_obstacle_position_x
+	coin_instance.position.y = coin_position_ys[ypos]
+
+	add_child(coin_instance)
