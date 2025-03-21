@@ -25,6 +25,7 @@ func _process(delta: float):
 func _on_spawner_timer_timeout() -> void:
 	var top: bool = randi() % 2 == 0
 	var obstacle_instance : Area2D = obstacle.instantiate()
+
 	obstacle_instance.position.x = spawned_obstacle_position_x
 
 	if top:
