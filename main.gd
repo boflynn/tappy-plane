@@ -58,7 +58,8 @@ func _on_coin_collided(body: Node2D, coin_instance: Area2D) -> void:
 	
 	health += 4
 	health = clamp(health, 0, 100)
-	coin_instance.queue_free()
+	# Is this a memory leak?
+	coin_instance.get_node("AnimationPlayer").play("CoinCollected")
 
 func _on_obstacle_collided(body: Node2D) -> void:
 	if(body.is_in_group("player")):
