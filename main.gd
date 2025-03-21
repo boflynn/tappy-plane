@@ -14,9 +14,11 @@ func _process(delta: float):
 	for lefty in get_tree().get_nodes_in_group("lefties"):
 		lefty.position.x -= delta * background_movement_speed
 
-	if health > health_decrease_speed:
+	if health > 0:
 		health -= delta * health_decrease_speed
 		$UI/HealthBar.value = health
+	else:
+		game_over()
 
 	score += delta
 	var formatted_score: String = str(score)
@@ -29,6 +31,7 @@ func _on_spawner_timer_timeout() -> void:
 	var obstacle_instance : Area2D = obstacle.instantiate()
 
 	obstacle_instance.position.x = spawned_obstacle_position_x
+	obstacle_instance.body_entered.connect(_on_obstacle_collided)
 
 	if top:
 		obstacle_instance.position.y = 200
@@ -56,3 +59,11 @@ func _on_coin_collided(body: Node2D, coin_instance: Area2D) -> void:
 	health += 4
 	health = clamp(health, 0, 100)
 	coin_instance.queue_free()
+
+func _on_obstacle_collided(body: Node2D) -> void:
+	if(body.is_in_group("player")):
+		game_over()
+
+func game_over() -> void:
+	$GameOver.show()
+	get_tree().paused = true
