@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c61kof8wfjr2v"]
+[gd_scene load_steps=19 format=3 uid="uid://c61kof8wfjr2v"]
 
 [ext_resource type="Texture2D" uid="uid://dijkxlbopqdoj" path="res://assets/Background.png" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://c7tpirasxr6mc" path="res://main.gd" id="1_r0du0"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://c6550ewlsa5i4" path="res://Coin.tscn" id="7_trn2v"]
 [ext_resource type="Texture2D" uid="uid://dc4xxtms0djw0" path="res://assets/Circle.png" id="8_wkp8b"]
 [ext_resource type="Script" uid="uid://70p06uxdnl5c" path="res://game_over.gd" id="9_03owx"]
+[ext_resource type="AudioStream" uid="uid://8vsc4euyg5tg" path="res://assets/CoinCollected.ogg" id="9_5vvyt"]
+[ext_resource type="AudioStream" uid="uid://btnrb4ss41pfg" path="res://assets/GameOver.ogg" id="10_c6i3y"]
+[ext_resource type="AudioStream" uid="uid://boreqmi5qkhla" path="res://assets/Music.wav" id="13_c6i3y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cm0pq"]
 radius = 25.0
@@ -79,6 +82,13 @@ scale_amount_min = 0.5
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_20pc6")
 color = Color(0.760784, 0.25098, 0.25098, 1)
+
+[node name="CoinCollected" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("9_5vvyt")
+
+[node name="GameOver" type="AudioStreamPlayer" parent="Player"]
+process_mode = 3
+stream = ExtResource("10_c6i3y")
 
 [node name="Walls" type="Node" parent="."]
 
@@ -176,6 +186,10 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("6_3dxm6")
 theme_override_font_sizes/font_size = 50
 text = "Play Again"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_c6i3y")
+autoplay = true
 
 [connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]
 [connection signal="timeout" from="SpawnerTimer" to="." method="_on_spawner_timer_timeout"]

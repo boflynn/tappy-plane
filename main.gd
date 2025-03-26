@@ -58,13 +58,14 @@ func _on_coin_collided(body: Node2D, coin_instance: Area2D) -> void:
 	
 	health += 4
 	health = clamp(health, 0, 100)
-	# Is this a memory leak?
 	coin_instance.get_node("AnimationPlayer").play("CoinCollected")
+	$Player/CoinCollected.play()
 
 func _on_obstacle_collided(body: Node2D) -> void:
 	if(body.is_in_group("player")):
 		game_over()
 
 func game_over() -> void:
+	$Player/GameOver.play()
 	$GameOver.show()
 	get_tree().paused = true
